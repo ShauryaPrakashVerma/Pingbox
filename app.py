@@ -1,29 +1,32 @@
 from flask import Flask, render_template
+from routes import (
+    dashboard_bp,
+    send_messages_bp,
+    settings_bp,
+    api_logs_bp,
+    incoming_messages_bp,
+    webhooks_bp
+)
 
 
 app = Flask(__name__)
 
+app.register_blueprint(settings_bp)
+app.register_blueprint(dashboard_bp)
+app.register_blueprint(send_messages_bp)
+app.register_blueprint(api_logs_bp)
+app.register_blueprint(incoming_messages_bp)
+app.register_blueprint(webhooks_bp)
 
-@app.route("/", methods=["GET"])
-def homepage():
-    return render_template('dashboard.html')
 
 
-@app.route("/sendmessages", methods=["GET"])
-def sendmessages():
-    return render_template('send_messages.html')
 
-@app.route("/incomingmessages", methods=["GET"])
-def incomingmessages():
-    return render_template('incoming_messages.html')
 
-@app.route("/apilogs", methods=["GET"])
-def apilogs():
-    return render_template('api_logs.html')
 
-@app.route("/settings", methods=["GET"])
-def settings():
-    return render_template('settings.html')
+
+
+
+
 
 
 

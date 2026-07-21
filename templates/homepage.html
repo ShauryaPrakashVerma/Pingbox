@@ -47,31 +47,31 @@
         <!-- left sidebar -->
         <div class="col-2 bg p-0 d-flex flex-column h-100">
           <div class="row p-2 mx-0">
-            <a href="{{ url_for('homepage') }}">
+            <a href="{{ url_for('dashboard.homepage') }}">
               <small>Dashboard</small>
             </a>
           </div>
 
           <div class="row p-2 mx-0">
-            <a href="{{ url_for('sendmessages') }}">
+            <a href="{{ url_for('sendmessages.sendmessages') }}">
               <small>Send Message</small>
             </a>
           </div>
 
           <div class="row p-2 mx-0">
-            <a href="{{ url_for('incomingmessages') }}">
+            <a href="{{ url_for('incomingmessages.incomingmessages') }}">
               <small>Incoming Message</small>
             </a>
           </div>
 
           <div class="row p-2 mx-0">
-            <a href="{{ url_for('apilogs') }}">
+            <a href="{{ url_for('apilogs.apilogs') }}">
               <small>API Logs</small>
             </a>
           </div>
 
           <div class="row p-2 mx-0">
-            <a href="{{ url_for('settings') }}">
+            <a href="{{ url_for('settings.settings') }}">
               <small>Settings</small>
             </a>
           </div>

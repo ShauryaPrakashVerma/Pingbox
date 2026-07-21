@@ -3,3 +3,5 @@ crmVenv/
 .env
 
 *.png
+
+__pycache__/

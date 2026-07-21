@@ -1,0 +1,112 @@
+{% extends 'homepage.html' %} 
+
+{% block content %}
+
+    
+
+    <!-- LABEL -->
+    <div class="row">
+        <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand">Dashboard</a>
+            <form class="d-flex" action="{{ url_for('sendmessages') }}">
+            <button class="btn btn-outline-success" type="submit">Send Messages</button>
+            </form>
+        </div>
+        </nav>
+    </div>
+
+    <br>
+    
+    <!-- NUMBERS -->
+    <div class="row">
+        <div class="col">
+            <div class="card border-default mb-3">
+                <div class="card-header text-center text-uppercase font-weight-bold">Total Sent</div>
+                <div class="card-body text-dark">
+                    <h5 class="card-title text-center">12,967</h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card border-default mb-3">
+                <div class="card-header text-center text-uppercase font-weight-bold">Total Recieved</div>
+                <div class="card-body text-dark">
+                    <h5 class="card-title text-center">1,274</h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card border-default mb-3">
+                <div class="card-header text-center text-uppercase font-weight-bold">Active Platforms</div>
+                <div class="card-body text-dark">
+                    <h5 class="card-title text-center">3/4</h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card border-default mb-3">
+                <div class="card-header text-center text-uppercase font-weight-bold">Unread Messages</div>
+                <div class="card-body text-dark">
+                    <h5 class="card-title text-center">54</h5>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <!-- GRAPHS -->
+    <div class="row">
+        <!-- Message Activity -->
+        <div class="col-8">
+            <div class="card border-default mb-3">
+                <div class="card-header text-center text-uppercase font-weight-bold">Total Sent</div>
+                <div class="card-body text-dark">
+                    <h5 class="card-title text-center">12,967</h5>
+                </div>
+            </div>
+        </div>
+
+        <!-- Platform Share -->
+        <div class="col">
+            <div class="card border-default mb-3">
+                <div class="card-header text-center text-uppercase font-weight-bold">Unread Messages</div>
+                <div class="card-body text-dark">
+                    <h5 class="card-title text-center">54</h5>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    
+    <!-- More GRAPHS -->
+    <div class="row">
+        <!-- Weekly Volume -->
+        <div class="col-8">
+            <div class="card border-default mb-3">
+                <div class="card-header text-center text-uppercase font-weight-bold">Total Sent</div>
+                <div class="card-body text-dark">
+                    <h5 class="card-title text-center">12,967</h5>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="col">
+            <div class="card border-default mb-3">
+                <div class="card-header text-center text-uppercase font-weight-bold">Unread Messages</div>
+                <div class="card-body text-dark">
+                    <h5 class="card-title text-center">54</h5>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    
+{% endblock %}

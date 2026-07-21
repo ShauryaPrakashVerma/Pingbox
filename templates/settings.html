@@ -1,0 +1,152 @@
+{% extends 'homepage.html' %} 
+
+{% block styles %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/settings.css') }}"
+/>
+{% endblock %} 
+
+{% block content %}
+
+<div class="settings-container">
+
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand">Settings</a>
+        </div>
+    </nav>
+    <!-- <h2 class="settings-title">Settings</h2>
+    <p class="settings-subtitle">
+        Manage platform credentials and webhook configuration
+    </p> -->
+
+
+    <!-- CARD Telegram -->
+    <div class="platform-card">
+    <div class="card-header">
+        <div class="platform-info">
+        <div class="platform-icon">✈️</div>
+
+        <div class="platform-details">
+            <h3>Telegram</h3>
+
+            <p class="status">
+                <span class="status-dot"></span>
+                Connected
+            </p>
+        </div>
+        </div>
+
+        <button class="test-btn">🧪 Test Connection</button>
+    </div>
+
+    <div class="card-body">
+        <label>Bot Token</label>
+
+        <div class="input-group">
+        <input type="password" value="12345678901234567890" readonly />
+        <button class="eye-btn">👁</button>
+        </div>
+
+        <button class="save-btn">🛡 Save Credentials</button>
+    </div>
+    </div>
+
+    <!-- Whatsapp CARD -->
+    <div class="platform-card">
+    <div class="card-header">
+        <div class="platform-info">
+        <div class="platform-icon">✈️</div>
+
+        <div class="platform-details">
+            <h3>Whatsapp</h3>
+
+            <p class="status">
+                <span class="status-dot"></span>
+                Connected
+            </p>
+        </div>
+        </div>
+
+        <button class="test-btn">🧪 Test Connection</button>
+    </div>
+
+    <div class="card-body">
+        <label>Bot Token</label>
+
+        <div class="input-group">
+        <input type="password" value="12345678901234567890" readonly />
+        <button class="eye-btn">👁</button>
+        </div>
+
+        <button class="save-btn">🛡 Save Credentials</button>
+    </div>
+    </div>
+
+    <!-- Instagram CARD -->
+    <div class="platform-card">
+    <div class="card-header">
+        <div class="platform-info">
+        <div class="platform-icon">✈️</div>
+
+        <div class="platform-details">
+            <h3>Instagram</h3>
+
+            <p class="status">
+                <span class="status-dot"></span>
+                Connected
+            </p>
+        </div>
+        </div>
+
+        <button class="test-btn">🧪 Test Connection</button>
+    </div>
+
+
+    <div class="card-body">
+        <label>Bot Token</label>
+
+        <div class="input-group">
+        <input type="password" value="12345678901234567890" readonly />
+        <button class="eye-btn">👁</button>
+        </div>
+
+        <button class="save-btn">🛡 Save Credentials</button>
+    </div>
+    </div>
+
+    <!-- Messenger CARD -->
+    <div class="platform-card">
+    <div class="card-header">
+        <div class="platform-info">
+        <div class="platform-icon">✈️</div>
+
+        <div class="platform-details">
+            <h3>Messenger</h3>
+
+            <p class="status">
+                <span class="status-dot"></span>
+                Connected
+            </p>
+        </div>
+        </div>
+
+        <button class="test-btn">🧪 Test Connection</button>
+    </div>
+
+
+    <div class="card-body">
+        <label>Bot Token</label>
+
+        <div class="input-group">
+        <input type="password" value="12345678901234567890" readonly />
+        <button class="eye-btn">👁</button>
+        </div>
+
+        <button class="save-btn">🛡 Save Credentials</button>
+    </div>
+    </div>
+</div>
+
+{% endblock %}

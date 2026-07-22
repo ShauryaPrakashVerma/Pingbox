@@ -1,152 +1,171 @@
-{% extends 'homepage.html' %} 
+
+{% extends 'homepage.html' %}
 
 {% block styles %}
-<link
-  rel="stylesheet"
-  href="{{ url_for('static', filename='css/settings.css') }}"
-/>
-{% endblock %} 
+<link rel="stylesheet" href="{{ url_for('static', filename='css/settings.css') }}">
+{% endblock %}
 
 {% block content %}
-
 <div class="settings-container">
 
-    <nav class="navbar navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand">Settings</a>
-        </div>
-    </nav>
-    <!-- <h2 class="settings-title">Settings</h2>
-    <p class="settings-subtitle">
-        Manage platform credentials and webhook configuration
-    </p> -->
+<nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+        <span class="navbar-brand mb-0 h1">Settings</span>
+    </div>
+</nav>
 
-
-    <!-- CARD Telegram -->
-    <div class="platform-card">
+<!-- TELEGRAM -->
+<div class="platform-card">
     <div class="card-header">
         <div class="platform-info">
-        <div class="platform-icon">✈️</div>
-
-        <div class="platform-details">
-            <h3>Telegram</h3>
-
-            <p class="status">
-                <span class="status-dot"></span>
-                Connected
-            </p>
+            <div class="platform-icon">✈️</div>
+            <div class="platform-details">
+                <h3>Telegram</h3>
+                <p class="status">
+                    <span class="status-dot" id="telegram-status-dot"></span>
+                    <span id="telegram-status-text">Unknown</span>
+                </p>
+            </div>
         </div>
-        </div>
-
-        <button class="test-btn">🧪 Test Connection</button>
+        <button type="button" class="test-btn" data-platform="telegram">🧪 Test Connection</button>
     </div>
 
     <div class="card-body">
-        <label>Bot Token</label>
-
-        <div class="input-group">
-        <input type="password" value="12345678901234567890" readonly />
-        <button class="eye-btn">👁</button>
-        </div>
-
-        <button class="save-btn">🛡 Save Credentials</button>
-    </div>
-    </div>
-
-    <!-- Whatsapp CARD -->
-    <div class="platform-card">
-    <div class="card-header">
-        <div class="platform-info">
-        <div class="platform-icon">✈️</div>
-
-        <div class="platform-details">
-            <h3>Whatsapp</h3>
-
-            <p class="status">
-                <span class="status-dot"></span>
-                Connected
-            </p>
-        </div>
-        </div>
-
-        <button class="test-btn">🧪 Test Connection</button>
-    </div>
-
-    <div class="card-body">
-        <label>Bot Token</label>
-
-        <div class="input-group">
-        <input type="password" value="12345678901234567890" readonly />
-        <button class="eye-btn">👁</button>
-        </div>
-
-        <button class="save-btn">🛡 Save Credentials</button>
-    </div>
-    </div>
-
-    <!-- Instagram CARD -->
-    <div class="platform-card">
-    <div class="card-header">
-        <div class="platform-info">
-        <div class="platform-icon">✈️</div>
-
-        <div class="platform-details">
-            <h3>Instagram</h3>
-
-            <p class="status">
-                <span class="status-dot"></span>
-                Connected
-            </p>
-        </div>
-        </div>
-
-        <button class="test-btn">🧪 Test Connection</button>
-    </div>
-
-
-    <div class="card-body">
-        <label>Bot Token</label>
-
-        <div class="input-group">
-        <input type="password" value="12345678901234567890" readonly />
-        <button class="eye-btn">👁</button>
-        </div>
-
-        <button class="save-btn">🛡 Save Credentials</button>
-    </div>
-    </div>
-
-    <!-- Messenger CARD -->
-    <div class="platform-card">
-    <div class="card-header">
-        <div class="platform-info">
-        <div class="platform-icon">✈️</div>
-
-        <div class="platform-details">
-            <h3>Messenger</h3>
-
-            <p class="status">
-                <span class="status-dot"></span>
-                Connected
-            </p>
-        </div>
-        </div>
-
-        <button class="test-btn">🧪 Test Connection</button>
-    </div>
-
-
-    <div class="card-body">
-        <label>Bot Token</label>
-
-        <div class="input-group">
-        <input type="password" value="12345678901234567890" readonly />
-        <button class="eye-btn">👁</button>
-        </div>
-
-        <button class="save-btn">🛡 Save Credentials</button>
-    </div>
+        <form action="{{ url_for('settings.settings_telegram_save') }}" method="POST">
+            <label>Bot Token</label>
+            <div class="input-group">
+                <input type="password" name="bot_token" placeholder="Enter Telegram Bot Token">
+                <button type="button" class="eye-btn">👁</button>
+            </div>
+            <button type="submit" class="save-btn">🛡 Save Credentials</button>
+        </form>
     </div>
 </div>
+
+<!-- WHATSAPP -->
+<div class="platform-card">
+    <div class="card-header">
+        <div class="platform-info">
+            <div class="platform-icon">💬</div>
+            <div class="platform-details">
+                <h3>WhatsApp</h3>
+                <p class="status">
+                    <span class="status-dot" id="whatsapp-status-dot"></span>
+                    <span id="whatsapp-status-text">Unknown</span>
+                </p>
+            </div>
+        </div>
+        
+        <button type="button" class="test-btn" data-platform="whatsapp">🧪 Test Connection</button>
+    </div>
+
+    <div class="card-body">
+        <form action="{{ url_for('settings.settings_whatsapp_save') }}" method="POST">
+            <label>Phone Number ID</label>
+            <div class="input-group">
+                <input type="text" name="phone_number_id" placeholder="Enter Phone Number ID">
+            </div>
+
+            <label>Permanent Access Token</label>
+            <div class="input-group">
+                <input type="password" name="access_token" placeholder="Enter Permanent Access Token">
+                <button type="button" class="eye-btn">👁</button>
+            </div>
+
+            <button type="submit" class="save-btn">🛡 Save Credentials</button>
+        </form>
+    </div>
+</div>
+
+<!-- INSTAGRAM -->
+<div class="platform-card">
+    <div class="card-header">
+        <div class="platform-info">
+            <div class="platform-icon">📸</div>
+            <div class="platform-details">
+                <h3>Instagram</h3>
+                <p class="status">
+                    <span class="status-dot" id="instagram-status-dot"></span>
+                    <span id="instagram-status-text">Unknown</span>
+                </p>
+            </div>
+        </div>
+        <button type="button" class="test-btn" data-platform="instagram">🧪 Test Connection</button>
+    </div>
+
+    <div class="card-body">
+        <form action="{{ url_for('settings.settings_instagram_save') }}" method="POST">
+            <label>Instagram User ID</label>
+            <div class="input-group">
+                <input type="text" name="ig_user_id" placeholder="Enter Instagram User ID">
+            </div>
+
+            <label>Access Token</label>
+            <div class="input-group">
+                <input type="password" name="access_token" placeholder="Enter Instagram Access Token">
+                <button type="button" class="eye-btn">👁</button>
+            </div>
+
+            <button type="submit" class="save-btn">🛡 Save Credentials</button>
+        </form>
+    </div>
+</div>
+
+<!-- MESSENGER -->
+<div class="platform-card">
+    <div class="card-header">
+        <div class="platform-info">
+            <div class="platform-icon">💙</div>
+            <div class="platform-details">
+                <h3>Messenger</h3>
+                <p class="status">
+                    <span class="status-dot" id="messenger-status-dot"></span>
+                    <span id="messenger-status-text">Unknown</span>
+                </p>
+            </div>
+        </div>
+        <button type="button" class="test-btn" data-platform="messenger">🧪 Test Connection</button>
+    </div>
+
+    <div class="card-body">
+        <form action="{{ url_for('settings.settings_messenger_save') }}" method="POST">
+            <label>Facebook Page ID</label>
+            <div class="input-group">
+                <input type="text" name="page_id" placeholder="Enter Facebook Page ID">
+            </div>
+
+            <label>Page Access Token</label>
+            <div class="input-group">
+                <input type="password" name="access_token" placeholder="Enter Page Access Token">
+                <button type="button" class="eye-btn">👁</button>
+            </div>
+
+            <button type="submit" class="save-btn">🛡 Save Credentials</button>
+        </form>
+    </div>
+</div>
+
+</div>
+
+<script>
+document.querySelectorAll(".test-btn").forEach(btn=>{
+  btn.addEventListener("click", async ()=>{
+    const platform = btn.dataset.platform;
+    btn.disabled = true;
+    btn.textContent = "Testing...";
+    try{
+      const r = await fetch(`/settings/${platform}/test`, {method:"POST"});
+      const data = await r.json();
+      document.getElementById(`${platform}-status-text`).textContent = data.connected ? "Connected" : "Disconnected";
+      document.getElementById(`${platform}-status-dot`).style.background = data.connected ? "green" : "red";
+    }catch(e){
+      document.getElementById(`${platform}-status-text`).textContent = "Connection Error";
+      document.getElementById(`${platform}-status-dot`).style.background = "red";
+    }
+    btn.disabled = false;
+    btn.textContent = "🧪 Test Connection";
+  });
+});
+</script>
 
 {% endblock %}

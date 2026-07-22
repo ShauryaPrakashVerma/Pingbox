@@ -9,12 +9,23 @@ from routes import (
 )
 
 from config import Config
-
+from database.db import db
+from models.platform_config import PlatformConfig
 
 app = Flask(__name__)
 
+
 app.config.from_object(Config)
 
+# Initialize SQLAlchemy with the Flask app
+db.init_app(app)
+
+
+
+with app.app_context():
+    db.create_all()
+        
+        
 app.register_blueprint(settings_bp)
 app.register_blueprint(dashboard_bp)
 app.register_blueprint(sendmessages_bp)

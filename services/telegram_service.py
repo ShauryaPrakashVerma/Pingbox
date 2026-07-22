@@ -1,4 +1,8 @@
 from flask import current_app
+import requests
+from models.platform_config import PlatformConfig
+
+
 
 def send_text_message(chat_id, text):
 
@@ -31,5 +35,19 @@ def send_text_message(chat_id, text):
 
 
 
-# def telegram_test_service():
-#     pass
+def test_connection():
+
+    token = get_bot_token()
+    url = f"https://api.telegram.org/bot{token}/getMe"
+    response = requests.get(url)
+    return response.status_code == 200
+
+
+
+def get_bot_token():
+    telegram = PlatformConfig.query.filter_by(platform="Telegram").first()
+    if telegram:
+        return telegram.bot_token
+    return None
+
+

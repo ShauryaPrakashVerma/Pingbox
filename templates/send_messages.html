@@ -1,11 +1,256 @@
-{% extends 'homepage.html' %} 
+{% extends "homepage.html" %}
+
+{% block styles %}
+<link
+    rel="stylesheet"
+    href="{{ url_for('static', filename='css/sendmessages.css') }}"
+>
+{% endblock %}
 
 {% block content %}
 
-<nav class="navbar navbar-light bg-light">
-    <div class="container-fluid">
-        <a class="navbar-brand">Send Messages</a>
+<div class="send-container">
+
+    <div class="page-header">
+        <h2>Send Message</h2>
+        <p>Compose and send a message across any connected platform</p>
     </div>
-</nav>
+
+    <div class="send-card">
+
+        <form action="{{ url_for('sendmessages.sendmessages') }}" method="POST" enctype="multipart/form-data">
+
+            <!-- PLATFORM -->
+            <div class="form-section">
+
+                <label class="section-title">
+                    PLATFORM
+                </label>
+
+                <div class="platform-grid">
+
+                    <label class="platform-option">
+
+                        <input
+                            type="radio"
+                            name="platform"
+                            value="whatsapp"
+                            checked
+                        >
+
+                        <div class="platform-box">
+                            <div class="platform-icon">💬</div>
+                            <span>WhatsApp</span>
+                        </div>
+
+                    </label>
+
+                    <label class="platform-option">
+
+                        <input
+                            type="radio"
+                            name="platform"
+                            value="telegram"
+                        >
+
+                        <div class="platform-box">
+                            <div class="platform-icon">✈️</div>
+                            <span>Telegram</span>
+                        </div>
+
+                    </label>
+
+                    <label class="platform-option">
+
+                        <input
+                            type="radio"
+                            name="platform"
+                            value="messenger"
+                        >
+
+                        <div class="platform-box">
+                            <div class="platform-icon">💙</div>
+                            <span>Messenger</span>
+                        </div>
+
+                    </label>
+
+                    <label class="platform-option">
+
+                        <input
+                            type="radio"
+                            name="platform"
+                            value="instagram"
+                        >
+
+                        <div class="platform-box">
+                            <div class="platform-icon">📷</div>
+                            <span>Instagram</span>
+                        </div>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <!-- RECIPIENT -->
+
+            <div class="form-section">
+
+                <label class="section-title">
+                    RECIPIENT
+                </label>
+
+                <input
+                    class="text-input"
+                    type="text"
+                    name="recipient"
+                    placeholder="+91 9876543210 / Username / Page ID"
+                >
+
+            </div>
+
+
+            <!-- MESSAGE TYPE -->
+
+            <div class="form-section">
+
+                <label class="section-title">
+                    MESSAGE TYPE
+                </label>
+
+                <div class="type-buttons">
+
+                    <label>
+
+                        <input
+                            type="radio"
+                            name="message_type"
+                            value="text"
+                            checked
+                        >
+
+                        <span>📝 Text</span>
+
+                    </label>
+
+                    <label>
+
+                        <input
+                            type="radio"
+                            name="message_type"
+                            value="image"
+                        >
+
+                        <span>🖼 Image</span>
+
+                    </label>
+
+                    <label>
+
+                        <input
+                            type="radio"
+                            name="message_type"
+                            value="video"
+                        >
+
+                        <span>🎥 Video</span>
+
+                    </label>
+
+                    <label>
+
+                        <input
+                            type="radio"
+                            name="message_type"
+                            value="document"
+                        >
+
+                        <span>📄 Document</span>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <!-- MESSAGE -->
+
+            <div class="form-section">
+
+                <label class="section-title">
+                    MESSAGE
+                </label>
+
+                <textarea
+                    class="message-box"
+                    name="message"
+                    placeholder="Type your text message..."
+                    maxlength="4096"
+                ></textarea>
+
+            </div>
+
+
+            <!-- ATTACHMENTS -->
+
+            <div class="bottom-tools">
+
+                <div class="attachment-tools">
+
+                    <label class="upload-btn">
+                        📎
+                        <input
+                            type="file"
+                            name="attachment"
+                            hidden
+                        >
+                    </label>
+
+                    <button
+                        type="button"
+                        class="emoji-btn"
+                    >
+                        😊
+                    </button>
+
+                </div>
+
+                <span class="char-counter">
+                    0 / 4096
+                </span>
+
+            </div>
+
+
+            <!-- FOOTER -->
+
+            <div class="card-footer">
+
+                <div class="status">
+
+                    <span class="status-dot"></span>
+
+                    Ready to send
+
+                </div>
+
+                <button
+                    class="send-btn"
+                    type="submit"
+                >
+                    ✈ Send Message
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
 
 {% endblock %}

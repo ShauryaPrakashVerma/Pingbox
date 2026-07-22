@@ -1,0 +1,610 @@
+/* =====================================================
+   SEND MESSAGE PAGE
+=====================================================*/
+
+.send-container{
+    width:60%;
+    margin:2rem auto;
+}
+
+/* =====================================================
+   HEADER
+=====================================================*/
+
+.page-header{
+    margin-bottom:1.75rem;
+}
+
+.page-header h2{
+    margin:0;
+    font-size:2rem;
+    font-weight:700;
+    color:#111;
+}
+
+.page-header p{
+    margin-top:.35rem;
+    color:#666;
+    font-size:.95rem;
+}
+
+/* =====================================================
+   MAIN CARD
+=====================================================*/
+
+.send-card{
+
+    background:#fff;
+
+    border:2px solid #111;
+
+    border-radius:0;
+
+    padding:2rem;
+
+    box-shadow:none;
+
+}
+
+.form-section{
+
+    margin-bottom:1.8rem;
+
+}
+
+.section-title{
+
+    display:block;
+
+    margin-bottom:.7rem;
+
+    font-size:.82rem;
+
+    font-weight:700;
+
+    letter-spacing:1px;
+
+    color:#111;
+
+}
+
+/* =====================================================
+   PLATFORM GRID
+=====================================================*/
+
+.platform-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:1rem;
+
+}
+
+.platform-option{
+
+    width:100%;
+
+}
+
+.platform-option input{
+
+    display:none;
+
+}
+
+.platform-box{
+
+    border:2px solid #111;
+
+    background:#fff;
+
+    height:90px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    cursor:pointer;
+
+    transition:.18s;
+
+}
+
+.platform-icon{
+
+    font-size:1.4rem;
+
+    margin-bottom:.55rem;
+
+}
+
+.platform-box span{
+
+    font-size:.92rem;
+
+    font-weight:600;
+
+    color:#111;
+
+}
+
+.platform-box:hover{
+
+    background:#f4f4f4;
+
+}
+
+.platform-option input:checked + .platform-box{
+
+    background:#111;
+
+}
+
+.platform-option input:checked + .platform-box span{
+
+    color:#fff;
+
+}
+
+.platform-option input:checked + .platform-box .platform-icon{
+
+    filter:grayscale(100%) brightness(5);
+
+}
+
+/* =====================================================
+   INPUTS
+=====================================================*/
+
+.text-input{
+
+    width:100%;
+
+    height:50px;
+
+    border:2px solid #111;
+
+    background:white;
+
+    padding:0 1rem;
+
+    outline:none;
+
+    font-size:.95rem;
+
+}
+
+.text-input::placeholder{
+
+    color:#777;
+
+}
+
+.text-input:focus{
+
+    background:#fafafa;
+
+}
+
+/* =====================================================
+   MESSAGE TYPE BUTTONS
+=====================================================*/
+
+.type-buttons{
+
+    display:flex;
+
+    gap:.75rem;
+
+    flex-wrap:wrap;
+
+}
+
+.type-buttons input{
+
+    display:none;
+
+}
+
+.type-buttons span{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:.45rem;
+
+    border:2px solid #111;
+
+    padding:.6rem 1rem;
+
+    cursor:pointer;
+
+    transition:.15s;
+
+    background:white;
+
+    font-weight:500;
+
+    color:#111;
+
+}
+
+.type-buttons span:hover{
+
+    background:#efefef;
+
+}
+
+.type-buttons input:checked + span{
+
+    background:#111;
+
+    color:white;
+
+}
+
+/* =====================================================
+   MESSAGE BOX
+=====================================================*/
+
+.message-box{
+
+    width:100%;
+
+    min-height:190px;
+
+    resize:vertical;
+
+    border:2px solid #111;
+
+    background:white;
+
+    outline:none;
+
+    padding:1rem;
+
+    font-size:.95rem;
+
+    line-height:1.5;
+
+}
+
+.message-box::placeholder{
+
+    color:#777;
+
+}
+
+.message-box:focus{
+
+    background:#fafafa;
+
+}
+
+/* ============================================================================================================ */
+
+
+/* =====================================================
+   BOTTOM TOOLBAR
+=====================================================*/
+
+.bottom-tools{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-top:1rem;
+
+    margin-bottom:2rem;
+
+}
+
+.attachment-tools{
+
+    display:flex;
+
+    gap:.75rem;
+
+}
+
+.upload-btn,
+.emoji-btn{
+
+    width:42px;
+
+    height:42px;
+
+    border:2px solid #111;
+
+    background:white;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    cursor:pointer;
+
+    transition:.15s;
+
+    font-size:1rem;
+
+}
+
+.upload-btn:hover,
+.emoji-btn:hover{
+
+    background:#111;
+
+    color:white;
+
+}
+
+.upload-btn input{
+
+    display:none;
+
+}
+
+.char-counter{
+
+    color:#555;
+
+    font-size:.85rem;
+
+    font-weight:500;
+
+}
+
+/* =====================================================
+   FOOTER
+=====================================================*/
+
+.card-footer{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    border-top:2px solid #111;
+
+    padding-top:1.5rem;
+
+}
+
+.status{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:.6rem;
+
+    font-size:.95rem;
+
+    font-weight:500;
+
+    color:#111;
+
+}
+
+.status-dot{
+
+    width:10px;
+
+    height:10px;
+
+    background:#111;
+
+    border-radius:50%;
+
+}
+
+/* =====================================================
+   SEND BUTTON
+=====================================================*/
+
+.send-btn{
+
+    background:#111;
+
+    color:white;
+
+    border:2px solid #111;
+
+    padding:.85rem 2rem;
+
+    font-size:.95rem;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.15s;
+
+    min-width:190px;
+
+}
+
+.send-btn:hover{
+
+    background:white;
+
+    color:#111;
+
+}
+
+.send-btn:active{
+
+    transform:scale(.98);
+
+}
+
+/* =====================================================
+   SMALL ANIMATIONS
+=====================================================*/
+
+.platform-box,
+.send-btn,
+.upload-btn,
+.emoji-btn,
+.type-buttons span{
+
+    transition:
+        background .15s ease,
+        color .15s ease,
+        border-color .15s ease,
+        transform .15s ease;
+
+}
+
+.platform-box:hover{
+
+    transform:translateY(-2px);
+
+}
+
+.send-btn:hover{
+
+    transform:translateY(-2px);
+
+}
+
+/* =====================================================
+   SCROLLBAR
+=====================================================*/
+
+.message-box::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+.message-box::-webkit-scrollbar-thumb{
+
+    background:#111;
+
+}
+
+.message-box::-webkit-scrollbar-track{
+
+    background:#f4f4f4;
+
+}
+
+/* =====================================================
+   RESPONSIVE
+=====================================================*/
+
+@media(max-width:1200px){
+
+    .send-container{
+
+        width:75%;
+
+    }
+
+}
+
+@media(max-width:992px){
+
+    .send-container{
+
+        width:88%;
+
+    }
+
+    .platform-grid{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .platform-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .type-buttons{
+
+        flex-direction:column;
+
+    }
+
+    .type-buttons span{
+
+        width:100%;
+
+        justify-content:center;
+
+    }
+
+    .bottom-tools{
+
+        flex-direction:column;
+
+        gap:1rem;
+
+        align-items:flex-start;
+
+    }
+
+    .card-footer{
+
+        flex-direction:column;
+
+        gap:1.5rem;
+
+        align-items:flex-start;
+
+    }
+
+    .send-btn{
+
+        width:100%;
+
+    }
+
+}
+
+@media(max-width:576px){
+
+    .send-container{
+
+        width:95%;
+
+        margin:1rem auto;
+
+    }
+
+    .send-card{
+
+        padding:1.25rem;
+
+    }
+
+    .page-header h2{
+
+        font-size:1.6rem;
+
+    }
+
+}

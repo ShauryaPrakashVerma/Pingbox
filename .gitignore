@@ -5,3 +5,7 @@ crmVenv/
 *.png
 
 __pycache__/
+
+instance/
+
+*.db

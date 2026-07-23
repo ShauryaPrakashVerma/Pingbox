@@ -1,5 +1,5 @@
 from flask import Flask, render_template, Blueprint, redirect, url_for, request
-from services import settings_service, telegram_service
+from services import settings_service, telegram_service, whatsapp_service
 
 settings_bp = Blueprint("settings", __name__)
 
@@ -16,7 +16,6 @@ def settings():
 # save telegram details
 @settings_bp.route("/settings/telegram", methods=['POST'])
 def settings_telegram_save():
-    
     bot_token = request.form["bot_token"]
     settings_service.save_telegram(bot_token)
     return redirect(url_for("settings.settings"))
@@ -28,7 +27,10 @@ def settings_telegram_save():
 # save whatsapp details
 @settings_bp.route("/settings/whatsapp", methods=['POST'])
 def settings_whatsapp_save():
-    pass
+    phone_number_id = request.form["phone_number_id"]
+    access_token = request.form["access_token"]
+    settings_service.save_whatsapp(phone_number_id, access_token)
+    return redirect(url_for("settings.settings"))
 
 
 
@@ -36,7 +38,10 @@ def settings_whatsapp_save():
 # save messenger details
 @settings_bp.route("/settings/messenger", methods=['POST'])
 def settings_messenger_save():
-    pass
+    ig_user_id = request.form["ig_user_id"]
+    access_token = request.form["access_token"]
+    settings_service.save_whatsapp(ig_user_id, access_token)
+    return redirect(url_for("settings.settings"))
 
 
 
@@ -45,7 +50,10 @@ def settings_messenger_save():
 # save instagram details
 @settings_bp.route("/settings/instagram", methods=['POST'])
 def settings_instagram_save():
-    pass
+    page_id = request.form["page_id"]
+    access_token = request.form["access_token"]
+    settings_service.save_whatsapp(page_id, access_token)
+    return redirect(url_for("settings.settings"))
 
 
 # -----------------------------------------------------------------------------------------------------------------------------------
@@ -59,7 +67,7 @@ def test_telegram():
     success = telegram_service.test_connection()
     if success:
         return {"status": "connected"}
-    return {"status": "disconnected"}, 400
+    return {"status": "disconnected"}
 
 
 
@@ -67,7 +75,10 @@ def test_telegram():
 # test whatsapp connection
 @settings_bp.route("/settings/telegram/test", methods=['POST'])
 def test_whatsapp():
-    pass
+    success = whatsapp_service.test_connection()
+    if success:
+        return {"status": "connected"}
+    return {"status": "disconnected"}
 
 
 

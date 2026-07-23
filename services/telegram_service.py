@@ -4,34 +4,57 @@ from models.platform_config import PlatformConfig
 
 
 
-def send_text_message(chat_id, text):
+def send_message(recipient, message_type, message, attachment):
 
-    token = current_app.config["TELEGRAM_BOT_TOKEN"]
+    token = get_bot_token()
+    recipient = recipient
+    message_type = message_type
+    attachment = attachment
+    chat_id = get_chat_id()
 
-    url = (
-        f"https://api.telegram.org/bot{token}/sendMessage"
-    )
+    url = f"https://api.telegram.org/bot{token}/sendMessage"
 
     payload = {
         "chat_id": chat_id,
-        "text": text
+        "text": message
     }
-    
-    
-    
-      # requests.post(url, json=payload)
-      
-      
-    # routes/send_messages.py
 
-# from services.telegram_service import send_text_message
+    try:
+        response = requests.post(url, json=payload)
+        response.raise_for_status()
 
-# @sendmessages_bp.route("/send/telegram", methods=["POST"])
-# def send_telegram():
+        print("✅ Message sent successfully")
+        print(response.json())
 
-#     send_text_message(chat_id, text)
+        return response.json()
 
-#     return "Message Sent"
+    except requests.exceptions.HTTPError:
+        print("❌ Telegram API Error")
+        print(response.text)
+
+    except requests.exceptions.RequestException as e:
+        print("❌ Network Error")
+        print(e)
+
+    return None
+
+
+# def send_message():
+
+#     BOT_TOKEN = get_bot_token()
+#     BASE_URL = f"https://api.telegram.org/bot{BOT_TOKEN}"
+
+#     # the following two statements were written to get the chat id of the Telegram bot conversation
+#     response = requests.get(f"{BASE_URL}/getUpdates")
+#     print(response.json())
+
+#     CHAT_ID = "5536041XXXx"
+
+#     payload = {"chat_id": CHAT_ID,"text": "Hello from Python!"}
+#     response = requests.post(f"{BASE_URL}/sendMessage",json=payload)
+
+#     print(response.json())
+
 
 
 
@@ -50,4 +73,14 @@ def get_bot_token():
         return telegram.bot_token
     return None
 
+
+def get_chat_id():
+    token = get_bot_token()
+    url = f"https://api.telegram.org/bot{token}/getUpdates"
+    response = requests.get(url).json()
+    if not response["ok"]:
+        return None
+    if not response["result"]:
+        return None
+    return response["result"][-1]["message"]["chat"]["id"]
 

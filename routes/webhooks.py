@@ -46,7 +46,7 @@ def messenger_webhook():
         challenge = request.args.get("hub.challenge")
 
         if mode == "subscribe" and token == VERIFY_TOKEN:
-            print("✅ Messenger webhook verified")
+            print("Messenger webhook verified")
             return challenge, 200
 
         print("Messenger webhook verification failed")

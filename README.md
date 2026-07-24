@@ -1,5 +1,7 @@
 # Pingbox
 
-<img width="1910" height="993" alt="image" src="https://github.com/user-attachments/assets/f28b3c2c-b446-40ad-a0a3-32fe7dc90a83" />
+<img width="1911" height="993" alt="image" src="https://github.com/user-attachments/assets/3fc8dbbd-68ab-4362-ba73-bfc93b3f8a21" />
+
 <br/>
-<img width="1901" height="993" alt="image" src="https://github.com/user-attachments/assets/3d5a8291-3f73-479f-8f6e-1d0b290e0fd3" />
+<img width="1904" height="993" alt="image" src="https://github.com/user-attachments/assets/44c36d4b-1136-4253-a005-f975099c1fe3" />
+

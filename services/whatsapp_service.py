@@ -17,19 +17,24 @@ def get_phone_number_id():
 
 def test_connection():
     ACCESS_TOKEN = get_access_token()
-    PHONE_NUMBER_ID = get_phone_number_id()
-    
+    PHONE_NUMBER_ID = get_phone_number_id()    
     url = f"https://graph.facebook.com/v17.0/{PHONE_NUMBER_ID}"
     headers = {"Authorization": f"Bearer {ACCESS_TOKEN}"}
-    
+
     try:
         response = requests.get(url, headers=headers)
         response.raise_for_status()
-        print("Connection OK")
-        print("Response:", response.json())
-    except requests.exceptions.RequestException as e:
-        print("Connection failed:", e)
+        return True
 
+    except requests.exceptions.HTTPError:
+        print("API Error")
+        print(response.status_code)
+        print(response.text)
+        return False
+
+    except requests.exceptions.RequestException as e:
+        print("Network Error:", e)
+        return False
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -41,26 +46,12 @@ def send_message(recipient, message_type, message, attachment):
     url = f"https://graph.facebook.com/v25.0/{PHONE_NUMBER_ID}/messages"
 
     payload = {
-        "messaging_product": "whatsapp",
-        "to": recipient,
-        "type": message_type,
-        "text": {"body": message}
+        "messaging_product": "whatsapp", "to": recipient, "type": message_type, "text": {"body": message}
     }
 
-    headers = {
-        "Authorization": f"Bearer {ACCESS_TOKEN}",
-        "Content-Type": "application/json"
-    }
+    headers = {"Authorization": f"Bearer {ACCESS_TOKEN}", "Content-Type": "application/json"}
     try:
         response = requests.post(url, headers=headers, data=json.dumps(payload))
-        response.raise_for_status()
-        print("Message sent successfully!")
-        print("Response:", response.json())
-    except requests.exceptions.HTTPError as http_err:
-        print(f"HTTP error occurred: {http_err}")
-        print("Response:", response.text)
-    except requests.exceptions.RequestException as err:
-        print(f"Connection error: {err}")
     except Exception as e:
         print(f"Unexpected error: {e}")
 

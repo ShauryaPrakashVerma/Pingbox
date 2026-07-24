@@ -3,13 +3,13 @@ import requests
 import json
 
 def get_access_token():
-    WhatsApp = PlatformConfig.query.filter_by(platform="WhatsApp").first()
+    WhatsApp = PlatformConfig.query.filter_by(platform="whatsapp").first()
     if WhatsApp:
         return WhatsApp.access_token
     return None
 
 def get_phone_number_id():
-    WhatsApp = PlatformConfig.query.filter_by(platform="WhatsApp").first()
+    WhatsApp = PlatformConfig.query.filter_by(platform="whatsapp").first()
     if WhatsApp:
         return WhatsApp.phone_number_id
     return None

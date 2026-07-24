@@ -27,7 +27,9 @@ def send_message(recipient, message_type, message, attachment=None):
 
     access_token = get_access_token()
     ig_user_id = get_ig_user_id()
-    url = f"https://graph.facebook.com/v23.0/{ig_user_id}/messages"
+    print("Token:", access_token)
+    print("IG User ID:", ig_user_id)
+    url = f"https://graph.facebook.com/v25.0/{ig_user_id}/messages"
     
     headers = {
         "Authorization": f"Bearer {access_token}",
@@ -54,14 +56,18 @@ def send_message(recipient, message_type, message, attachment=None):
 
 
 def get_access_token():
-    Instagram = PlatformConfig.query.filter_by(platform="Instagram").first()
+    Instagram = PlatformConfig.query.filter_by(platform="instagram").first()
+    
+    print(Instagram.platform)
+    print(Instagram.access_token)
+    print(Instagram.ig_user_id)
     if Instagram:
         return Instagram.access_token
     return None
 
 
 def get_ig_user_id():
-    Instagram = PlatformConfig.query.filter_by(platform="Instagram").first()
+    Instagram = PlatformConfig.query.filter_by(platform="instagram").first()
     if Instagram:
         return Instagram.ig_user_id
 

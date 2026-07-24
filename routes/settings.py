@@ -38,9 +38,9 @@ def settings_whatsapp_save():
 # save messenger details
 @settings_bp.route("/settings/messenger", methods=['POST'])
 def settings_messenger_save():
-    ig_user_id = request.form["ig_user_id"]
+    page_id = request.form["page_id"]
     access_token = request.form["access_token"]
-    settings_service.save_whatsapp(ig_user_id, access_token)
+    settings_service.save_messenger(page_id, access_token)
     return redirect(url_for("settings.settings"))
 
 
@@ -50,9 +50,9 @@ def settings_messenger_save():
 # save instagram details
 @settings_bp.route("/settings/instagram", methods=['POST'])
 def settings_instagram_save():
-    page_id = request.form["page_id"]
+    ig_user_id = request.form["ig_user_id"]
     access_token = request.form["access_token"]
-    settings_service.save_whatsapp(page_id, access_token)
+    settings_service.save_instagram(ig_user_id, access_token)
     return redirect(url_for("settings.settings"))
 
 

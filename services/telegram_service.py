@@ -59,7 +59,7 @@ def test_connection():
 
 
 def get_bot_token():
-    telegram = PlatformConfig.query.filter_by(platform="Telegram").first()
+    telegram = PlatformConfig.query.filter_by(platform="telegram").first()
     if telegram:
         return telegram.bot_token
     return None

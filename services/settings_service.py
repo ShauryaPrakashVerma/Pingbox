@@ -4,13 +4,13 @@ from database.db import db
 
 # Save telegram credentials
 def save_telegram(bot_token):
-    telegram = PlatformConfig.query.filter_by(platform="Telegram").first()
+    telegram = PlatformConfig.query.filter_by(platform="telegram").first()
     
     if telegram:
         telegram.bot_token = bot_token
     else:
         telegram = PlatformConfig(
-            platform="Telegram",
+            platform="telegram",
             bot_token=bot_token
         )
         db.session.add(telegram)
@@ -19,13 +19,13 @@ def save_telegram(bot_token):
     
 # Save whatsapp credentials
 def save_whatsapp(phone_number_id, access_token):
-    whatsapp = PlatformConfig.query.filter_by(platform="WhatsApp").first()
+    whatsapp = PlatformConfig.query.filter_by(platform="whatsapp").first()
     if whatsapp:
         whatsapp.phone_number_id = phone_number_id
         whatsapp.access_token = access_token
     else:
         whatsapp = PlatformConfig(
-            platform = "WhatsApp",
+            platform = "whatsapp",
             phone_number_id = phone_number_id,
             access_token = access_token
         )
@@ -34,15 +34,15 @@ def save_whatsapp(phone_number_id, access_token):
     
 
 # Save instagram credentials
-def save_instagram(instagram_user_id, access_token):
-    instagram = PlatformConfig.query.filter_by(platform="Instagram").first()
+def save_instagram(ig_user_id, access_token):
+    instagram = PlatformConfig.query.filter_by(platform="instagram").first()
     if instagram:
-        instagram.instagram_user_id = instagram_user_id
+        instagram.ig_user_id = ig_user_id
         instagram.access_token = access_token
     else:
         instagram = PlatformConfig(
             platform = "instagram",
-            instagram_user_id = instagram_user_id,
+            ig_user_id = ig_user_id,
             access_token = access_token
         )
         db.session.add(instagram)
@@ -50,16 +50,16 @@ def save_instagram(instagram_user_id, access_token):
     
     
 # save messenger credentials
-def save_messenger(facebook_page_id, access_token):
-    messenger = PlatformConfig.query.filter_by(platform="Messenger").first()
+def save_messenger(page_id, access_token):
+    messenger = PlatformConfig.query.filter_by(platform="messenger").first()
     if messenger:
-        messenger.facebook_page_id = facebook_page_id
-        messenger.page_access_token = access_token
+        messenger.facebook_page_id = page_id
+        messenger.access_token = access_token
     else:
         messenger = PlatformConfig(
             platform = "messenger",
-            facebook_page_id = facebook_page_id,
-            page_access_token = access_token
+            page_id = page_id,
+            access_token = access_token
         )
         db.session.add(messenger)
     db.session.commit()

@@ -1,10 +1,6 @@
 from models.platform_config import PlatformConfig
-
 import requests
 import json
-import sys
-
-
 
 def get_access_token():
     WhatsApp = PlatformConfig.query.filter_by(platform="WhatsApp").first()
@@ -35,6 +31,8 @@ def test_connection():
         print("Connection failed:", e)
 
 
+# --------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 def send_message(recipient, message_type, message, attachment):
     ACCESS_TOKEN = get_access_token()
@@ -56,15 +54,15 @@ def send_message(recipient, message_type, message, attachment):
     try:
         response = requests.post(url, headers=headers, data=json.dumps(payload))
         response.raise_for_status()
-        print("✅ Message sent successfully!")
+        print("Message sent successfully!")
         print("Response:", response.json())
     except requests.exceptions.HTTPError as http_err:
-        print(f"❌ HTTP error occurred: {http_err}")
+        print(f"HTTP error occurred: {http_err}")
         print("Response:", response.text)
     except requests.exceptions.RequestException as err:
-        print(f"❌ Connection error: {err}")
+        print(f"Connection error: {err}")
     except Exception as e:
-        print(f"❌ Unexpected error: {e}")
+        print(f"Unexpected error: {e}")
 
 
 

@@ -1,5 +1,6 @@
-from flask import Blueprint
+from flask import Blueprint, request
 from services import telegram_service
+
 
 webhooks_bp = Blueprint('webhooks', __name__)
 
@@ -12,7 +13,22 @@ def telegram_webhook():
 
 @webhooks_bp.route("/webhook/whatsapp", methods=['GET','POST'])
 def whatsapp_webhook():
-    return "", 200
+    if request.method == "GET":
+        # verification
+        mode = request.args.get("hub.mode")
+        verify_token = request.args.get("hub.verify_token")
+        challenge = request.args.get("hub.challenge")
+
+        if mode == "subscribe" and verify_token == VERIFY_TOKEN:
+            print("Webhook verified")
+            return challenge, 200
+
+        print("Verification failed")
+        return "Verification Failed", 403
+
+    if request.method == "POST":
+        # incoming events
+        pass
 
 @webhooks_bp.route("/webhook/messenger", methods=['GET','POST'])
 def messenger_webhook():

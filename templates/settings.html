@@ -26,7 +26,7 @@
       </div>
       <form action="{{ url_for('settings.test_telegram')}}">
         <button type="button" class="test-btn" data-platform="telegram">
-          🧪 Test Connection
+          Test Connection
         </button>
       </form>
     </div>
@@ -45,7 +45,7 @@
           />
           <button type="button" class="eye-btn">👁</button>
         </div>
-        <button type="submit" class="save-btn">🛡 Save Credentials</button>
+        <button type="submit" class="save-btn">Save Credentials</button>
       </form>
     </div>
   </div>
@@ -66,7 +66,7 @@
 
       <form action="{{url_for('settings.test_whatsapp')}}">
         <button type="button" class="test-btn" data-platform="whatsapp">
-          🧪 Test Connection
+          Test Connection
         </button>
       </form>
     </div>
@@ -95,7 +95,7 @@
           <button type="button" class="eye-btn">👁</button>
         </div>
 
-        <button type="submit" class="save-btn">🛡 Save Credentials</button>
+        <button type="submit" class="save-btn">Save Credentials</button>
       </form>
     </div>
   </div>
@@ -113,9 +113,12 @@
           </p>
         </div>
       </div>
-      <button type="button" class="test-btn" data-platform="instagram">
-        🧪 Test Connection
-      </button>
+      <form action="{{url_for('settings.test_instagram')}}">
+        <button type="button" class="test-btn" data-platform="instagram">
+          Test Connection
+        </button>
+      </form>
+      
     </div>
 
     <div class="card-body">
@@ -142,7 +145,7 @@
           <button type="button" class="eye-btn">👁</button>
         </div>
 
-        <button type="submit" class="save-btn">🛡 Save Credentials</button>
+        <button type="submit" class="save-btn">Save Credentials</button>
       </form>
     </div>
   </div>
@@ -160,9 +163,11 @@
           </p>
         </div>
       </div>
-      <button type="button" class="test-btn" data-platform="messenger">
-        🧪 Test Connection
-      </button>
+      <form action="{{ url_for('settings.test_messenger') }}">
+        <button type="button" class="test-btn" data-platform="messenger">
+          Test Connection
+        </button>
+      </form>
     </div>
 
     <div class="card-body">
@@ -189,7 +194,7 @@
           <button type="button" class="eye-btn">👁</button>
         </div>
 
-        <button type="submit" class="save-btn">🛡 Save Credentials</button>
+        <button type="submit" class="save-btn">Save Credentials</button>
       </form>
     </div>
   </div>

@@ -1,5 +1,5 @@
 from flask import Flask, render_template, Blueprint, redirect, url_for, request
-from services import settings_service, telegram_service, whatsapp_service
+from services import settings_service, telegram_service, whatsapp_service, messenger_service, instagram_service
 
 settings_bp = Blueprint("settings", __name__)
 
@@ -86,7 +86,10 @@ def test_whatsapp():
 # test messenger connection
 @settings_bp.route("/settings/telegram/test", methods=['POST'])
 def test_messenger():
-    pass
+    success = messenger_service.test_connection()
+    if success:
+        return {"status": "connected"}
+    return {"status": "disconnected"}
 
 
 
@@ -94,4 +97,7 @@ def test_messenger():
 # test instagram connection
 @settings_bp.route("/settings/telegram/test", methods=['POST'])
 def test_instagram():
-    pass
+    success = instagram_service.test_connection()
+    if success:
+        return {"status": "connected"}
+    return {"status": "disconnected"}

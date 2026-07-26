@@ -1,11 +1,122 @@
-{% extends 'homepage.html' %} 
+{% extends "homepage.html" %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/incomingmessages.css') }}">
+{% endblock %}
 
 {% block content %}
 
-<nav class="navbar navbar-light bg-light">
-    <div class="container-fluid">
-        <a class="navbar-brand">Incoming Messages</a>
+<div class="messages-container">
+    <!-- Header -->
+    <div class="page-header">
+        <h2>Incoming Messages</h2>
+        <p>View and manage incoming conversations across all connected platforms.</p>
     </div>
-</nav>
+
+    <div class="messages-card">
+
+        <!-- Left Sidebar -->
+        <div class="conversation-list">
+            <div class="search-box">
+                <input type="text" placeholder="Search conversations...">
+            </div>
+
+            <div class="conversation active">
+                <div class="platform whatsapp">
+                    💬
+                </div>
+
+                <div class="conversation-info">
+                    <h4>John Doe</h4>
+                    <p>Hello! I need some help...</p>
+                </div>
+
+                <span class="time">
+                    10:42 AM
+                </span>
+            </div>
+
+            <div class="conversation">
+                <div class="platform telegram">
+                    ✈
+                </div>
+
+                <div class="conversation-info">
+                    <h4>Alex Smith</h4>
+                    <p>Can you send me details?</p>
+                </div>
+
+                <span class="time">
+                    Yesterday
+                </span>
+            </div>
+
+            <div class="conversation">
+                <div class="platform instagram">
+                    📷
+                </div>
+
+                <div class="conversation-info">
+                    <h4>Emily</h4>
+                    <p>Thank you!</p>
+                </div>
+
+                <span class="time">
+                    Yesterday
+                </span>
+            </div>
+
+            <div class="conversation">
+                <div class="platform messenger">
+                    💙
+                </div>
+                <div class="conversation-info">
+                    <h4>Robert</h4>
+                    <p>Good Morning!</p>
+                </div>
+                <span class="time">
+                    Monday
+                </span>
+            </div>
+        </div>
+
+        <!-- Chat Window -->
+        <div class="chat-window">
+            <div class="chat-header">
+                <div>
+                    <h3>John Doe</h3>
+                    <span class="platform-name">
+                        WhatsApp
+                    </span>
+                </div>
+            </div>
+
+            <div class="chat-body">
+                <div class="message received">
+                    <p>Hello! I need some help with your product.</p>
+                    <span>10:40 AM</span>
+                </div>
+
+                <div class="message sent">
+                    <p>Sure! I'd be happy to help.</p>
+                    <span>10:41 AM</span>
+                </div>
+
+                <div class="message received">
+                    <p>Can you tell me the pricing?</p>
+                    <span>10:42 AM</span>
+                </div>
+            </div>
+
+            <div class="reply-box">
+                <textarea placeholder="Type your reply..."></textarea>
+
+                <button>
+                    Send Reply
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 
 {% endblock %}

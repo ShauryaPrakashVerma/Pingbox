@@ -1,6 +1,8 @@
 from flask import current_app
 import requests
 from models.platform_config import PlatformConfig
+from datetime import datetime
+from shared.message_queue import message_queue, message_history
 
 
 
@@ -10,6 +12,7 @@ def send_message(recipient, message_type, message, attachment):
     recipient = recipient
     message_type = message_type
     attachment = attachment
+    get_chat_id()
     chat_id = get_chat_id()
 
     url = f"https://api.telegram.org/bot{token}/sendMessage"
@@ -34,20 +37,6 @@ def send_message(recipient, message_type, message, attachment):
     return None
 
 
-# def send_message():
-
-#     BOT_TOKEN = get_bot_token()
-#     BASE_URL = f"https://api.telegram.org/bot{BOT_TOKEN}"
-#     # the following two statements were written to get the chat id of the Telegram bot conversation
-#     response = requests.get(f"{BASE_URL}/getUpdates")
-#     print(response.json())
-#     CHAT_ID = "5536041XXXx"
-
-#     payload = {"chat_id": CHAT_ID,"text": "Hello from Python!"}
-#     response = requests.post(f"{BASE_URL}/sendMessage",json=payload)
-#     print(response.json())
-
-
 
 
 def test_connection():
@@ -66,12 +55,83 @@ def get_bot_token():
 
 
 def get_chat_id():
+    # token = get_bot_token()
+    
+    # url = f"https://api.telegram.org/bot{token}/getUpdates"
+    # response = requests.get(url).json()
+    # print(response)
+    # if not response["ok"]:
+    #     return None
+    # if not response["result"]:
+    #     return None
+    # return response["result"][-1]["message"]["chat"]["id"]
+    last_message = message_history[-1]
+    chat_id = last_message["chat_id"]
+    return chat_id
+
+
+
+def get_webhook_info():
     token = get_bot_token()
-    url = f"https://api.telegram.org/bot{token}/getUpdates"
-    response = requests.get(url).json()
-    if not response["ok"]:
-        return None
-    if not response["result"]:
-        return None
-    return response["result"][-1]["message"]["chat"]["id"]
+    endpoint = f"https://api.telegram.org/bot{token}/getWebhookInfo"
+    response = requests.get(endpoint)
+    data = response.json()
+    return data
+
+
+
+
+def set_webhook():
+    token = get_bot_token()
+    endpoint = f"https://api.telegram.org/bot{token}/setWebhook"
+    
+    payload = {
+        "url" : "https://clock-goon-donated.ngrok-free.dev/webhook/telegram"
+    }
+    response = requests.post(endpoint, json=payload)
+    data = response.json()
+    return data.get("ok", False)
+
+
+
+def delete_webhook():
+    token = get_bot_token()
+    endpoint = f"https://api.telegram.org/bot{token}/deleteWebhook"
+    response = requests.post(endpoint)
+    data = response.json()
+    return data.get("ok", False)
+
+
+
+def handle_webhook(payload):
+    
+    id = payload["update_id"]
+    name = payload["message"]['from']['first_name'] + " " + payload["message"]['from']['last_name']
+    platform = "Telegram"
+    text = payload["message"]['text']
+    chat_id = payload["message"]["chat"]["id"]
+    # print(payload)
+    # print(payload["message"]["chat"]["id"])
+    
+    parsed_message = {
+        "id" : id,
+        "chat_id" : chat_id, 
+        "name" : name,
+        "platform" : platform,
+        "text" : text,
+        "timestamp": payload["message"]["date"],
+        "unread": True
+    }
+    
+    # incoming_messages.append(parsed_message) 
+    
+    message_history.append(parsed_message)
+    print(message_history)
+    message_queue.put(parsed_message)
+    print(message_queue)
+    
+    print(parsed_message)
+    # addMessage(name, platform, text, time
+    # addMessage(name, platform, text, time)
+    return "OK", 200
 

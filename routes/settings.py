@@ -62,18 +62,23 @@ def settings_instagram_save():
 
 # POST /settings/telegram/test
 # test telegram connection
-@settings_bp.route("/settings/telegram/test", methods=['POST'])
+@settings_bp.route("/settings/telegram/test", methods=["POST"])
 def test_telegram():
     success = telegram_service.test_connection()
-    if success:
+    if not success:
+        return {"status": "disconnected"}
+
+    webhook_success = telegram_service.set_webhook()
+    if webhook_success:
         return {"status": "connected"}
-    return {"status": "disconnected"}
+    
+    return {"status": "connected", "warning": "Webhook could not be configured"}
 
 
 
 # POST /settings/whatsapp/test
 # test whatsapp connection
-@settings_bp.route("/settings/telegram/test", methods=['POST'])
+@settings_bp.route("/settings/whatsapp/test", methods=['POST'])
 def test_whatsapp():
     success = whatsapp_service.test_connection()
     if success:
@@ -84,7 +89,7 @@ def test_whatsapp():
 
 # POST /settings/messenger/test
 # test messenger connection
-@settings_bp.route("/settings/telegram/test", methods=['POST'])
+@settings_bp.route("/settings/messenger/test", methods=['POST'])
 def test_messenger():
     success = messenger_service.test_connection()
     if success:
@@ -95,7 +100,7 @@ def test_messenger():
 
 # POST /settings/instagram/test
 # test instagram connection
-@settings_bp.route("/settings/telegram/test", methods=['POST'])
+@settings_bp.route("/settings/instagram/test", methods=['POST'])
 def test_instagram():
     success = instagram_service.test_connection()
     if success:

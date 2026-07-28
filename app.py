@@ -5,7 +5,7 @@ from routes import (
     settings_bp,
     apilogs_bp,
     incomingmessages_bp,
-    webhooks_bp
+    webhooks_bp,
 )
 
 from config import Config

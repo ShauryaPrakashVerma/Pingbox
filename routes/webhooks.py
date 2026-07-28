@@ -10,10 +10,8 @@ VERIFY_TOKEN = "pingbox2026"
 @webhooks_bp.route("/webhook/telegram", methods=['POST'])
 def telegram_webhook():
     payload = request.get_json()
-    print(payload)
-    return "OK", 200
-    # return telegram_service.handle_webhook()
-    
+    # return "OK", 200
+    return telegram_service.handle_webhook(payload)
 
 
 @webhooks_bp.route("/webhook/whatsapp", methods=['GET','POST'])

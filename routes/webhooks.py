@@ -1,6 +1,6 @@
 from flask import Blueprint, request
-from services import telegram_service
-
+from services import telegram_service, whatsapp_service, messenger_service
+import json
 
 webhooks_bp = Blueprint('webhooks', __name__)
 
@@ -32,9 +32,12 @@ def whatsapp_webhook():
     if request.method == "POST":
         payload = request.get_json()
         print("Received Webhook:")
-        print(payload)
-        # whatsapp_service.handle_webhook(payload)
-        return "EVENT_RECEIVED", 200
+        
+        print(json.dumps(payload, indent=4))
+        return whatsapp_service.handle_webhook(payload)
+
+
+
 
 @webhooks_bp.route("/webhook/messenger", methods=['GET','POST'])
 def messenger_webhook():
@@ -54,10 +57,15 @@ def messenger_webhook():
     if request.method == "POST":
         payload = request.get_json(silent=True)
         print("Messenger Webhook Received:")
-        print(payload)
+        print("POST HIT")
+        print(request.headers)
+        print(request.data)
+        # print(payload)
+        # parse the payload and store messages in your CRM datsbase
+        return messenger_service.handle_webhook(payload)
 
-        # parse the payload and store messages in your CRM database.
-        return "EVENT_RECEIVED", 200
+
+
 
 @webhooks_bp.route("/webhook/instagram", methods=['GET','POST'])
 def instagram_webhook():

@@ -1,5 +1,5 @@
 import requests
-
+import json
 from models.platform_config import PlatformConfig
 
 
@@ -65,3 +65,8 @@ def get_page_id():
     if Messenger:
         return Messenger.page_id
     return None
+
+
+def handle_webhook(payload):
+    print(json.dumps(payload, indent=4))
+    return "OK", 200

@@ -110,7 +110,8 @@ def handle_webhook(payload):
     platform = "Telegram"
     text = payload["message"]['text']
     chat_id = payload["message"]["chat"]["id"]
-    # print(payload)
+    print(payload)
+    
     # print(payload["message"]["chat"]["id"])
     
     parsed_message = {
